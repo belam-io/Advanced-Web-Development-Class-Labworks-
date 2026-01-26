@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #jokebox{
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            font-weight: bold;
+            font-size: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background: #f9f9f9;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0);
+        }
+
+        button{
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: #070bff;
+            color: white;
+        }
+
+        button:hover{
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Random joke generator</h1>
+    <div id="jokebox">Click the button to view the jokes</div>
+    <br>
+    <button id="randomBtn">Get random jokes</button>
+
+    <script>
+        const jokes = [
+            'WHy do many programmers prefer dark mode? Because light mode attract bugs',
+            'what do you call a farmer who is also a nurse? phaminus'
+        ]
+
+        const getRandomJoke = () => {
+
+            const randomIndex = Math.floor(Math.random() * jokes.length);
+
+            document.getElementById("jokebox").textContent = jokes[randomIndex];
+
+        }
+
+        document.getElementById("randomBtn").addEventListener("click", getRandomJoke);
+    </script>
+</body>
+
+</html>
