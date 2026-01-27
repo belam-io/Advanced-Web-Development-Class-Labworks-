@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Examples</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .project {
+            background: white;
+            padding: 20px;
+            margin: 20px 0; 
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .slider img {
+            width: 100%;
+            display: none;
+            border-radius: 10px;
+        }
+
+        .slider img.active {
+            display: block;
+        }
+
+        .slider-buttons {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>JS Examples</h1>
+
+        <div class="project">
+            <h2>Javascript Name Greeting</h2>  
+            <input type="text" id="nameInput" placeholder="Enter your name here...">
+            <button id="randomBtn1">Say hello</button>
+            <div id="output"></div>
+        </div>
+
+        <div class="project">
+            <h2>Random Number Generator</h2>
+            <button id="randomBtn2">Generate Number</button>
+            <div id="output2"></div>
+            <h3 id="heading1"></h3>
+        </div>
+
+        <div class="project">
+            <h2>Random Joke Generator</h2>
+            <button id="randomBtn3">Generate Joke</button>
+            <div id="output3"></div>
+        </div>
+
+        <div class="project">
+            <h2>Image Slider</h2>
+
+            <div class="slider">
+                <img src="https://images.pexels.com/photos/16458431/pexels-photo-16458431.jpeg" class="active">
+                <img src="https://images.pexels.com/photos/27219791/pexels-photo-27219791.jpeg">
+
+            </div>
+
+            <div class="slider-buttons">
+                <button onclick="prevSlide()">Prev</button>
+                <button onclick="nextSlide()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+   
+        function returnMessage() {
+            const getName = document.getElementById("nameInput").value;
+            const message = `Welcome ${getName}! Please enjoy your stay here!!!`;
+            document.getElementById('output').textContent = message;
+        }
+
+        document.getElementById('randomBtn1').addEventListener('click', returnMessage);
+        // Random Number
+        document.getElementById('randomBtn2').addEventListener('click', () => {
+            const getNumber = Math.floor(Math.random() * 100) + 1;
+            document.getElementById('output2').textContent = getNumber;
+            document.getElementById('heading1').textContent = `Number is ${getNumber}`;
+        });
+
+
+        const jokes = [
+            'What do you call a nurse who is a farmer? Phaminus',
+            'What do you call a cow that can bark? A cow barker',
+            'What do you call a laughing hyena? A laughing hyena'
+        ];
+
+        document.getElementById('randomBtn3').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * jokes.length);
+            document.getElementById('output3').textContent = jokes[randomIndex];
+        });
+
+        let index = 0;
+        const images = document.querySelectorAll('.slider img');
+
+        function showSlide(i) {
+            images[index].classList.remove('active');
+            index = (i + images.length) % images.length;
+            images[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(index + 1);
+        }
+
+        function prevSlide() {
+            showSlide(index - 1);
+        }
+    </script>
+
+</body>
+</html>
